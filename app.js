@@ -29,3 +29,21 @@ app.use(bodyParser.json())
 const limiter = rateLimit({windowMs: 15*60*1000, max: 3000})
 app.use(limiter)
 
+// MongoDB Database Connection
+let URI = "mongodb://localhost:27017/Todo";
+// let URI = "mongodb://127.0.0.1:27017/Todo"
+let OPTION={user:'',pass:''}
+mongoose.connect(URI,OPTION,(error)=>{
+    console.log("Connection Success")
+    console.log(error)
+})
+
+// Routing Implement
+app.use("/api/v1/",router)
+
+// Undefined Routing Implement
+app.use("*",(req,res)=>{
+    res.status(404).json({status: "fail",data:"Not Found"})
+})
+
+module.exports = app;
