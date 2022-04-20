@@ -4,4 +4,6 @@ const router = express.Router();
 
 // route add
 router.post("/CreateProfile", ProfileController.CreateProfile);
+router.post("/UserLogin", ProfileController.UserLogin);
+
 module.exports = router;
