@@ -7,6 +7,9 @@ module.exports=(req,res,next)=> {
         if (err){
             res.status(401).json({ status: "unauthorized" });
         } else {
+           // Get User Name From Decoded token & add with Req Header
+           let username = decoded['data']['UserName'];
+           req.headers.username=username;
             next();
         }
     })
