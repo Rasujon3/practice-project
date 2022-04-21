@@ -36,7 +36,6 @@ exports.UserLogin = (req, res) => {
 };
 
 exports.SelectProfile = (req, res) => {
-
   let UserName = req.headers['username'];
   ProfileModel.find({UserName:UserName}, (err,data)=>{
     if (err){
@@ -45,5 +44,13 @@ exports.SelectProfile = (req, res) => {
       res.status(200).json({ status: "success", data: data });
     }
   })
+
+};
+
+exports.UpdateProfile = (req, res) => {
+    let UserName = req.headers['username'];
+    let reqBody = req.body;
+
+    res.status(200).json(reqBody);
 
 };
