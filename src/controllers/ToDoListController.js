@@ -20,11 +20,23 @@ exports.CreateToDo = (req, res) => {
         TodoUpdateDate:TodoUpdateDate
     }
 
-    TodoListModel.create(PostBody, (err, data) => {
+TodoListModel.create(PostBody, (err, data) => {
+    if (err) {
+        res.status(400).json({ status: "fail", data: err });
+    } else {
+        res.status(200).json({ status: "success", data: data });
+    }
+});
+};
+
+exports.SelectToDo = (req, res) => {
+    let UserName = req.headers['username'];
+    TodoListModel.find({UserName:UserName},(err,data)=>{
+
         if (err) {
             res.status(400).json({ status: "fail", data: err });
         } else {
             res.status(200).json({ status: "success", data: data });
         }
-    });
+    })
 };
